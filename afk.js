@@ -1,15 +1,9 @@
-// test.js
-console.log("[+] Frida script loaded");
+// test4.js
+console.log("[+] Script started");
 
 setTimeout(function() {
-    console.log("[+] Testing module enumeration:");
-    Process.enumerateModules({
-        onMatch: function(module) {
-            if (module.name.includes("libil2cpp")) {
-                console.log(`    Found: ${module.name} at ${module.base}`);
-                console.log(`    Size: ${module.size}`);
-            }
-        },
-        onComplete: function() {}
+    console.log("[+] All modules:");
+    Process.enumerateModules().forEach(m => {
+        console.log(`    ${m.name}`);
     });
 }, 3000);
